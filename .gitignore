@@ -1,0 +1,9 @@
+# Logs
+*.log
+firebase-debug.log
+
+# VS Code
+.vscode/
+
+# IDX
+.idx/
