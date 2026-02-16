@@ -111,3 +111,39 @@ class LottoGenerator extends HTMLElement {
 }
 
 customElements.define('lotto-generator', LottoGenerator);
+
+// Theme switching logic
+function setTheme(theme) {
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+function toggleTheme() {
+    if (document.body.classList.contains('dark-mode')) {
+        setTheme('light');
+    } else {
+        setTheme('dark');
+    }
+}
+
+// Apply theme on page load and attach event listener
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+    } else {
+        setTheme('light');
+    }
+
+    const themeToggleButton = document.getElementById('theme-toggle');
+    if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', toggleTheme);
+    }
+});
