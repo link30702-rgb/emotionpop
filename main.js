@@ -7,13 +7,13 @@ class LottoGenerator extends HTMLElement {
         wrapper.setAttribute('class', 'lotto-card');
 
         const title = document.createElement('h1');
-        title.textContent = 'Lotto Number Generator';
+        title.textContent = '오늘 저녁 뭐 먹지?';
 
-        const numberDisplay = document.createElement('div');
-        numberDisplay.setAttribute('class', 'number-display');
+        const menuDisplay = document.createElement('div');
+        menuDisplay.setAttribute('class', 'menu-display');
 
         const button = document.createElement('button');
-        button.textContent = 'Generate Numbers';
+        button.textContent = '메뉴 추천받기';
 
         const historyContainer = document.createElement('div');
         historyContainer.setAttribute('class', 'history');
@@ -30,13 +30,13 @@ class LottoGenerator extends HTMLElement {
                 color: var(--primary-color);
                 margin-top: 0;
             }
-            .number-display {
+            .menu-display {
                 display: flex;
                 justify-content: center;
                 gap: 10px;
                 margin: 2rem 0;
             }
-            .number-display span {
+            .menu-display span {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -72,40 +72,40 @@ class LottoGenerator extends HTMLElement {
         shadow.appendChild(style);
         shadow.appendChild(wrapper);
         wrapper.appendChild(title);
-        wrapper.appendChild(numberDisplay);
+        wrapper.appendChild(menuDisplay);
         wrapper.appendChild(button);
         wrapper.appendChild(historyContainer);
 
         button.addEventListener('click', () => {
-            const numbers = this.generateNumbers();
-            this.displayNumbers(numbers);
-            this.updateHistory(numbers);
+            const menu = this.recommendMenu();
+            this.displayMenu(menu);
+            this.updateMenuHistory(menu);
         });
     }
 
-    generateNumbers() {
-        const numbers = new Set();
-        while (numbers.size < 6) {
-            numbers.add(Math.floor(Math.random() * 45) + 1);
-        }
-        return Array.from(numbers).sort((a, b) => a - b);
+    recommendMenu() {
+        const menuItems = [
+            "피자", "치킨", "햄버거", "파스타", "초밥", "스테이크",
+            "떡볶이", "김치찌개", "된장찌개", "비빔밥", "불고기", "삼겹살",
+            "짜장면", "짬뽕", "탕수육", "카레", "돈까스", "샐러드"
+        ];
+        const randomIndex = Math.floor(Math.random() * menuItems.length);
+        return menuItems[randomIndex];
     }
 
-    displayNumbers(numbers) {
-        const numberDisplay = this.shadowRoot.querySelector('.number-display');
-        numberDisplay.innerHTML = '';
-        for (const number of numbers) {
-            const span = document.createElement('span');
-            span.textContent = number;
-            numberDisplay.appendChild(span);
-        }
+    displayMenu(menu) {
+        const menuDisplay = this.shadowRoot.querySelector('.menu-display');
+        menuDisplay.innerHTML = '';
+        const span = document.createElement('span');
+        span.textContent = menu;
+        menuDisplay.appendChild(span);
     }
 
-    updateHistory(numbers) {
+    updateMenuHistory(menu) {
         const historyContainer = this.shadowRoot.querySelector('.history');
         const historyItem = document.createElement('div');
         historyItem.setAttribute('class', 'history-item');
-        historyItem.textContent = numbers.join(', ');
+        historyItem.textContent = menu;
         historyContainer.appendChild(historyItem);
     }
 }
