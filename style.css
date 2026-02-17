@@ -34,7 +34,6 @@ lotto-generator {
 
 
 .contact-form-container {
-    margin-top: 2rem;
     width: 100%;
     max-width: 400px;
     background: var(--white);
@@ -89,4 +88,15 @@ lotto-generator {
 
 .contact-form button[type="submit"]:hover {
     background-color: #e08e0b;
+}
+
+#disqus_thread {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    box-sizing: border-box;
 }
