@@ -17,9 +17,6 @@ class LottoGenerator extends HTMLElement {
 
         const historyContainer = document.createElement('div');
         historyContainer.setAttribute('class', 'history');
-        const historyTitle = document.createElement('h2');
-        historyTitle.textContent = 'History';
-        historyContainer.appendChild(historyTitle);
 
         const style = document.createElement('style');
         style.textContent = `

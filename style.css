@@ -22,10 +22,13 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Center items horizontally */
     min-height: 100vh;
     margin: 0;
+    padding: 1rem; /* Add some padding around the whole page */
+    gap: 2rem; /* Add space between sections */
 }
 
 lotto-generator {
